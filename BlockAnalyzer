@@ -1,0 +1,40 @@
+# scripts/main.py
+
+from scripts.block_details import fetch_block_details, get_block_summary
+from scripts.transaction_analysis import analyze_transactions
+from scripts.network_statistics import fetch_network_stats, get_network_summary
+from scripts.visualization import plot_block_summary, plot_transaction_analysis, plot_network_summary
+from utils.data_utils import save_data, load_json
+
+def main():
+    # Fetch and analyze block details
+    api_url = 'https://api.blockchain.example.com'
+    block_number = 123456
+    
+    block_details = fetch_block_details(api_url, block_number)
+    block_summary = get_block_summary(block_details)
+    
+    # Save block summary data
+    save_data(block_summary.to_dict(orient='records'), 'data/block_summary.json')
+    
+    # Fetch and analyze transaction data
+    transaction_df = pd.DataFrame([...])  # Replace with actual transaction data
+    transaction_analysis = analyze_transactions(transaction_df)
+    
+    # Save transaction analysis data
+    save_data(transaction_analysis.to_dict(orient='records'), 'data/transaction_analysis.json')
+    
+    # Fetch and analyze network statistics
+    network_stats = fetch_network_stats(api_url)
+    network_summary = get_network_summary(network_stats)
+    
+    # Save network summary data
+    save_data(network_summary.to_dict(orient='records'), 'data/network_summary.json')
+    
+    # Visualize data
+    plot_block_summary(block_summary)
+    plot_transaction_analysis(transaction_analysis)
+    plot_network_summary(network_summary)
+
+if __name__ == "__main__":
+    main()
